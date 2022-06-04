@@ -8,16 +8,17 @@ import { getBooks } from '../../lib/book'
 const Books = ({ books }) => {
 	return (
 		<Layout>
-            my book
-			{/* <Card className='my-3 shadow'>
-				<Card.Body>
-					<Card.Title>Here's your random joke for today</Card.Title>
-					<Card.Text>{joke.value}</Card.Text>
-					<Link href='/'>
-						<Button variant='dark'>Back</Button>
-					</Link>
-				</Card.Body>
-			</Card> */}
+            {books.map(book => (
+                <Card className='my-3 shadow' key={book.bookName}>
+                    <Card.Body>
+                        <Card.Title>{book.bookName}</Card.Title>
+                        <Card.Text>{book.bookContent}</Card.Text>
+                        <Link href='/'>
+                            <Button variant='dark'>Back</Button>
+                        </Link>
+                    </Card.Body>
+                </Card>
+            ))}
 		</Layout>
 	)
 }
