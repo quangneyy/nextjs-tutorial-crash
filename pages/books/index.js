@@ -3,11 +3,13 @@ import { getRandomJoke } from '../../lib/joke'
 import Button from 'react-bootstrap/Button'
 import Layout from '../../components/Layout'
 import Link from 'next/link'
+import { getBooks } from '../../lib/book'
 
-const Random = ({ joke }) => {
+const Books = ({ books }) => {
 	return (
 		<Layout>
-			<Card className='my-3 shadow'>
+            my book
+			{/* <Card className='my-3 shadow'>
 				<Card.Body>
 					<Card.Title>Here's your random joke for today</Card.Title>
 					<Card.Text>{joke.value}</Card.Text>
@@ -15,33 +17,19 @@ const Random = ({ joke }) => {
 						<Button variant='dark'>Back</Button>
 					</Link>
 				</Card.Body>
-			</Card>
+			</Card> */}
 		</Layout>
 	)
 }
 
 // Du lieu phu thuoc vao moi request, nhung ma van tao ra HTML tinh cho front-end, nen van tot cho SEO
-export const getServerSideProps = async () => {
-	const joke = await getRandomJoke()
-	// joke = false
-
-	if (!joke)
-		return {
-			notFound: true // 404 page
-		}
-
-	// return {
-	// 	redirect: {
-	// 		destination: '/posts',
-	// 		permanent: false
-	// 	}
-	// }
-
+export const getStaticProps = async () => {
+	const books = await getBooks()
 	return {
 		props: {
-			joke
+			books
 		}
 	}
 }
 
-export default Random
+export default Books
